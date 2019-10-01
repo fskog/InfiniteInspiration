@@ -1,0 +1,14 @@
+﻿@using InfiniteInspiration.Shared
+
+    <div class="jumbotron">
+        <h3>@Model.Title</h3>
+        <p><h5>@Model.Text</h5></p>
+        <h6><small>@Model.SystemId</small></h6>
+    </div>
+
+
+@code {
+    [Parameter]
+    public SectionItemBase Model { get; set; }
+
+}

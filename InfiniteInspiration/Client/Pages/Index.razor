@@ -1,0 +1,37 @@
+﻿@page "/"
+@using InfiniteInspiration.Shared
+@inject HttpClient Http
+
+
+
+@foreach (SectionProductList section in Sections)
+{
+    @*<InfiniteIns Model=section />*@
+    <ProductListSection Model="section" @key="section.SystemId" />
+    <p><small><italic>@section.SystemId</italic></small></p>
+
+}
+<p><a class="btn btn-primary btn-lg" href="#" @onclick=GetNewSection role="button">Load more</a></p>
+
+
+@code {
+    protected List<SectionProductList> Sections = new List<SectionProductList>();
+
+    private async void LoadMore()
+    {
+        await GetNewSection();
+    }
+
+    private async Task GetNewSection()
+    {
+        var productList = await Http.GetJsonAsync<SectionProductList>("Section/GetProductList");
+        
+        Sections.Add(productList);
+
+    }
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await GetNewSection();
+    //}
+}

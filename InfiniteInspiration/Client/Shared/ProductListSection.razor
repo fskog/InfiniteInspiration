@@ -1,0 +1,28 @@
+﻿@using InfiniteInspiration.Shared
+
+<div class="jumbotron" style="animation: fade-in 0.4s ease;">
+    <h3>@Model.Title</h3>
+    <h5>@Model.Text</h5><h6><small><italic>@Model.SystemId</italic></small></h6>
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-sm-3">
+                <div class="card">
+                    <img src="~/img/product-icon.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <a href="#" class="btn btn-primary">Buy for @product.Price:-</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public SectionProductList Model { get; set; }
+
+}
